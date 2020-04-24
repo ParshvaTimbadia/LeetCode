@@ -29,6 +29,7 @@ class Point:
   def print_point(self):
     print("[" + str(self.x) + ", " + str(self.y) + "] ", end='')
 
+#ADD NOTE HERE
   def __lt__(self, other):
     return self.distance_from_origin() > other.distance_from_origin()  
 
