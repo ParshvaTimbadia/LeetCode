@@ -1,21 +1,28 @@
+from typing import List
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
         
-        result: List[int] = []
-        def helper(first: int, slate:List[int]):
+        
+        result:List[List[int]] = []
+        def helper(num:int, slate:List[int]) -> None:
+            
+            #Backtracking case
             
             if len(slate) == k:
                 result.append(slate[:])
                 return
-    
             
-            for i in range(first, n+1):
-                
-                slate.append(i)
-                helper(i+1, slate)
-                slate.pop()
+            if num > n:
+                return
             
+            #Include
+            slate.append(num)
+            helper(num+1, slate)
+            slate.pop()
             
-            
-        helper(1, [])
+            #Exclude
+            helper(num+1,slate)
+        
+        helper(1,[])
         return result
+            
