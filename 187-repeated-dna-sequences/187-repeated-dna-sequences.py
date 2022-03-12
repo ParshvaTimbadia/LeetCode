@@ -30,7 +30,7 @@ class Solution:
             
         """
         TimeComplexity: O(N)
-        SpaceComplexity: O(L(N-L))
+        SpaceComplexity: O((N-L)*L)
         
         """
         
