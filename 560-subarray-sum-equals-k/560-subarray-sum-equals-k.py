@@ -19,4 +19,10 @@ class Solution:
             hMap[totalSum] += 1
         
         return result
+    
+        """
+        TimeComplexity: O(n)
+        SpaceComplexity: O(n)
+        
+        """
                 
