@@ -29,10 +29,10 @@ class Solution:
             helper(node.left, sumSoFar, hMap)
             helper(node.right, sumSoFar, hMap)
             
-            if sumSoFar in hMap:
-                hMap[sumSoFar] -= 1
-                if hMap[sumSoFar] == 0:
-                    del hMap[sumSoFar]
+            hMap[sumSoFar] -= 1
+            
+            if hMap[sumSoFar] == 0:
+                del hMap[sumSoFar]
         
         helper(root, 0, hMap)
         return count
