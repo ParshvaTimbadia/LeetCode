@@ -13,34 +13,32 @@ class Solution:
     
     def findMid(self, head):
         
-        firstNode = None
         slow = head
         fast = head
         slowPrevious = None
         while fast is not None and fast.next is not None:
             fast = fast.next.next
             slowPrevious = slow
-            if not firstNode:
-                firstNode = slow
             slow = slow.next
         
-        return firstNode, slow, slowPrevious
+        return slow, slowPrevious
         
     def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
         
         if head is None:
             return None
         
-        start, mid, midPrevious = self.findMid(head)
+        if head and head.next is None:
+            return TreeNode(head.val)
         
-        node = TreeNode(mid.val)
-        
-        lefthead = start
+        mid, midPrevious = self.findMid(head)
+
         righthead = mid.next
         if midPrevious:
             midPrevious.next = None
-        
-        node.left = self.sortedListToBST(lefthead)
+            
+        node = TreeNode(mid.val)
+        node.left = self.sortedListToBST(head)
         node.right = self.sortedListToBST(righthead)
         
         return node
