@@ -12,21 +12,9 @@ class Solution:
             if node is None:
                 return True
             
-            if node.left is None and node.right is None:
-                return True
-            
-            left = helper(node.left)
-            right = helper(node.right)
-            
-            if not left or not right:
+            if node.val != root.val:
                 return False
             
-            if node.left and node.right and node.val != node.left.val and node.val != node.right.val:
-                return False
-            
-            if node.left and node.left.val != node.val or node.right and node.right.val != node.val:
-                return False
-            
-            return True
+            return helper(node.left) and helper(node.right)
         
         return helper(root)
