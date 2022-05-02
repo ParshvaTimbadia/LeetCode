@@ -7,17 +7,29 @@
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         
+        # Preorder -> Node -> left -> right
+        """
+                    4
+                   / \
+                  2   7
+        
+                    None
+                  
+                    4
+                     \
+                      7
+        
+        """
+        
         def helper(node):
             
             if node is None:
-                return 
+                return
             
             node.left, node.right = node.right, node.left
-            
             helper(node.left)
             helper(node.right)
             
-            return node
-        
-        return helper(root)
+        helper(root)
+        return root
         
