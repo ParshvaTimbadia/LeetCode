@@ -7,15 +7,31 @@
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         
+        """
+        Traversal: PostOrder
+        
+        Cases:  
+        
+                1. None
+                
+                2.      3
+                      /   \
+                      9   20
+                            \
+                             7
+
+        """
         
         def helper(node):
             
             if node is None:
-                return 0
+                return 0 #Number of nodes, maxNumberOfNodes
             
-            left = helper(node.left)
-            right = helper(node.right)
+            leftnodes  = helper(node.left)
+            rightnodes = helper(node.right)
             
-            return max(left, right) + 1
+            #Processing
+            return max(leftnodes, rightnodes) + 1
         
         return helper(root)
+        
