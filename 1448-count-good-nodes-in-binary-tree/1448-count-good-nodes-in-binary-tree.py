@@ -8,18 +8,19 @@ class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         
         count = 0
-        def helper(node, greaternode):
+        def helper(node, maxSeenSoFar):
             nonlocal count
             
             if node is None:
                 return
             
-            if node.val >= greaternode:
+            if node.val >= maxSeenSoFar:
                 count += 1
             
-            helper(node.left, max(greaternode, node.val))
-            helper(node.right, max(greaternode, node.val))
+            helper(node.left, max(maxSeenSoFar, node.val) )
+            helper(node.right, max(maxSeenSoFar, node.val))
         
-        helper(root, -math.inf)
+        helper(root, root.val)
         return count
                 
+            
