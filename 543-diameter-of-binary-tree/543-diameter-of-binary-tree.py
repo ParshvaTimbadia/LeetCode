@@ -31,7 +31,7 @@ class Solution:
             
             
             maxHeightfromLeftAndRight = max(leftNodes, rightNodes) + 1
-            diameter = max(diameter,maxHeightfromLeftAndRight,leftNodes+rightNodes+1)
+            diameter = max(diameter,leftNodes+rightNodes+1)
             
             return maxHeightfromLeftAndRight
         
