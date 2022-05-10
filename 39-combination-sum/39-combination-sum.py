@@ -14,14 +14,15 @@ class Solution:
                 result.append(slate[:])
                 return
             
+                        
+            #Exclude
+            helper(index+1, sumSoFar, slate)
+            
             #include
             slate.append(candidates[index])
             helper(index, sumSoFar + candidates[index], slate)
             slate.pop()
             
-            
-            #Exclude
-            helper(index+1, sumSoFar, slate)
         
         helper(0, 0, [])
         return result
