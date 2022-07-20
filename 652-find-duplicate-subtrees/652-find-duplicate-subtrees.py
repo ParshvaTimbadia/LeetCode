@@ -18,7 +18,7 @@ class Solution:
             right = helper(node.right)
             
 
-            path = str(node.val) + "*" +left + "*" +right
+            path = str(node.val) + "-" +left + "-" +right
             
             if path not in hMap:
                 hMap[path] = 0
