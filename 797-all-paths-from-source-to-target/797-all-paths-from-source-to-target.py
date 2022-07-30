@@ -3,13 +3,11 @@ class Solution:
         
         sources = 0
         destination = len(graph) - 1
-        visited = set()
         result = []
         def dfs(source, slate):
             if source is None:
                 return
             
-            visited.add(source)
             slate.append(source)
             
             if source == destination:
@@ -18,7 +16,6 @@ class Solution:
         
             for neighbor in graph[source]:
                 dfs(neighbor, slate)
-                visited.remove(neighbor)
                 slate.pop()
         
         dfs(sources, [])
