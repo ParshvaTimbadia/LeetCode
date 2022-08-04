@@ -1,39 +1,32 @@
+import random
+
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
         
         
-        def mergeSort(nums, start, end):
+        def quickSort(A, start, end):
             
-            if start == end:
+            if start >= end:
                 return
             
-            mid = start + (end - start)//2
+            pivotIndex = random.randint(start, end)
             
-            mergeSort(nums, start, mid)
-            mergeSort(nums, mid + 1, end)
+            A[start], A[pivotIndex] = A[pivotIndex], A[start]
             
-            aux = []
-            i = start 
-            j = mid + 1
+            i = start
             
-            while i <= mid and j <= end:
-                
-                if nums[i] < nums[j]:
-                    aux.append(nums[i])
+            for j in range(i+1, end + 1):
+                if A[j] <= A[start]:
                     i += 1
-                else:
-                    aux.append(nums[j])
-                    j += 1
+                    A[i], A[j] = A[j], A[i]
             
-            while i <= mid:
-                aux.append(nums[i])
-                i += 1
+            A[start], A[i] = A[i], A[start]
             
-            while j <= end:
-                aux.append(nums[j])
-                j += 1
-            
-            nums[start:end+1] = aux
+            quickSort(A, start, i - 1)
+            quickSort(A, i + 1, end)
         
-        mergeSort(nums, 0, len(nums)-1)
+        quickSort(nums, 0, len(nums)-1)
         return nums
+                    
+            
+            
