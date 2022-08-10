@@ -1,26 +1,16 @@
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
         
-        if len(nums) == 1:
-            return True
+        # Greedy approach
         
-        dp = [False]*len(nums)
-        dp[0] = True
+        goal = len(nums) - 1
+        for i in range(len(nums)-1, -1, -1):
+            if i + nums[i] >= goal:
+                goal = i
         
-        
-        for i in range(1, len(nums)):
+        return True if goal == 0 else False
             
-            j = i - 1
-            possible = False
-            while j >= 0:
-                if j + nums[j] >= i and dp[j] == True:
-                    possible = True
-                    break
-                j -= 1
             
-            dp[i] = possible
-        
-        return dp[-1]
             
             
                 
