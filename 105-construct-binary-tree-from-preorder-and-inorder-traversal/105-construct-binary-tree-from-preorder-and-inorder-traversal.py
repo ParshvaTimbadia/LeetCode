@@ -7,26 +7,24 @@
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         
-        
-        # Put the entire inOrder traversal into the hashMap
         hMap = {value:index for index, value in enumerate(inorder)}
         
-        def helper(preorder, inorder, preStart, preEnd, inStart, inEnd):
-            if preStart > preEnd or inStart > inEnd:
-                return None
+        def preToIn(preStart, preEnd, inorderStart, inorderEnd):
+            
+            if inorderStart > inorderEnd or preStart > preEnd:
+                return 
             
             node = TreeNode(preorder[preStart])
-            
             inRoot = hMap[preorder[preStart]]
-            numLeft = inRoot - inStart
+            numLeft = inRoot - inorderStart
             
-            
-            node.left = helper(preorder, inorder, preStart + 1, preStart + numLeft, inStart, inRoot - 1)
-            node.right = helper(preorder, inorder, preStart + numLeft+ 1, preEnd , inRoot + 1, inEnd)
+            node.left = preToIn(preStart + 1, preEnd + numLeft, inorderStart, inRoot - 1)
+            node.right = preToIn(preStart + numLeft + 1, preEnd, inRoot + 1, inorderEnd)
             
             return node
         
-        
-        root = helper(preorder, inorder, 0, len(preorder)-1, 0, len(inorder)-1)
-        
-        return root
+        return preToIn(0, len(preorder) - 1, 0, len(preorder) - 1)
+            
+            
+            
+            
