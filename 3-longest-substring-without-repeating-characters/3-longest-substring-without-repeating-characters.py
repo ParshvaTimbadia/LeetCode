@@ -3,26 +3,22 @@ class Solution:
         
         start = 0
         hMap = {}
-        length = 0
+        maxLength = 0
         for end in range(len(s)):
-            char = s[end]
-            if char not in hMap:
-                hMap[char] = end
+            
+            if s[end] not in hMap:
+                hMap[s[end]] = end
             else:
-                start = max(hMap[char] + 1, start)
-                hMap[char] = end
+                start = max(start, hMap[s[end]] + 1)
+            
+            hMap[s[end]] = end
+            maxLength = max(maxLength, end - start + 1)
         
-            length = max(length, end - start + 1)
-        
-        return length
-        
-    
-                
+        return maxLength
+            
             
             
             
             
                 
-                
-            
             
