@@ -9,7 +9,7 @@ class Solution:
                 return mid
             elif nums[mid] < nums[-1] and target > nums[-1]:
                 right = mid - 1
-            elif nums[mid] >= nums[-1] and target <= nums[-1]:
+            elif nums[mid] > nums[-1] and target <= nums[-1]:
                 left = mid + 1
             else:
                 if nums[mid] < target:
