@@ -1,6 +1,8 @@
 class Solution:
     def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
         
+        #this solution occupies O(N) space since we are changing the array
+        
         flowerbed = [0] + flowerbed + [0]
         
         for i in range(1, len(flowerbed)-1):
