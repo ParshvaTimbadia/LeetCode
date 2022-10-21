@@ -1,26 +1,30 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
         
-        
+        #Bottom Up Solution:
         wordDict = set(wordDict)
-        result = []
-        
-        def helper(index, slate):
+        memo = {}
+        def helper(sub):
             
-            if index == len(s):
-                result.append(" ".join(slate[:]))
-                return
+            if sub in memo:
+                return memo[sub]
             
-            for i in range(index, len(s)):
+            result = []
+            
+            for i in range(len(sub)):
                 
-                subArray = s[index:i+1]
+                prefix = sub[:i+1]
                 
-                if subArray in wordDict:
+                if prefix in wordDict:
                     
-                    slate.append(subArray)
-                    helper(i+1, slate)
-                    slate.pop()
+                    if prefix == sub:
+                        result.append(prefix)
+                    else:
+                        for later in helper(sub[i+1:]):
+                            result.append(prefix+ " " + later)   
+            
+            memo[sub] = result
+            return result
         
+        return helper(s)
         
-        helper(0, [])
-        return result
