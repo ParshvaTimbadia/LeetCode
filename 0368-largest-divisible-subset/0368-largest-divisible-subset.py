@@ -13,4 +13,4 @@ class Solution:
                 if nums[i]%nums[j] == 0 and len(dp[i]) < len(dp[j]) + 1:
                     dp[i] = dp[j] + [nums[i]]
         
-        return max(dp, key=len)
+        return max(dp, key = lambda x:len(x))
