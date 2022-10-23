@@ -1,29 +1,28 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
         
-        #Bottom Up Solution:
+        # Let's implement with backtracking
         wordDict = set(wordDict)
-        memo = {}
-        def helper(sub):
+        memo = collections.defaultdict(bool)
+        def helper(word):
             
-            if sub in memo:
-                return memo[sub]
+            if word in memo:
+                return memo[word]
             
             result = []
-            
-            for i in range(len(sub)):
+            for i in range(len(word)):
                 
-                prefix = sub[:i+1]
+                sub = word[:i+1]
                 
-                if prefix in wordDict:
+                if sub in wordDict:
                     
-                    if prefix == sub:
-                        result.append(prefix)
+                    if sub == word:
+                        result.append(word)
                     else:
-                        for later in helper(sub[i+1:]):
-                            result.append(prefix+ " " + later)   
-            
-            memo[sub] = result
+                        for w in helper(word[i+1:]):
+                            result.append(sub+" "+w)
+                            
+            memo[word] = result
             return result
         
         return helper(s)
