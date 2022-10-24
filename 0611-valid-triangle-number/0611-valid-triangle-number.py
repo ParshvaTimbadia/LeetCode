@@ -8,7 +8,7 @@ class Solution:
         
         nums.sort()
         count = 0
-        for c in range(len(nums)-1, -1, -1):
+        for c in range(len(nums)-1, 1, -1):
             
             b = c - 1
             a = 0
