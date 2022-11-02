@@ -12,6 +12,7 @@ class Solution:
             for i in range(2,len(timeLine[name])):
                 if timeLine[name][i] - timeLine[name][i-2]  <= 60:
                     result.append(name)
+                    break
         
         return sorted(list(set(result)))
     
